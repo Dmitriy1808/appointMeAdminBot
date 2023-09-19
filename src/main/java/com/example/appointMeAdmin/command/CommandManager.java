@@ -1,9 +1,11 @@
 package com.example.appointMeAdmin.command;
 
+import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Message;
 
 import java.util.Map;
 
+@Component
 public class CommandManager {
 
     private final Map<Command, CommandProcessor> commandProcessors;
