@@ -44,7 +44,6 @@ public class AppointmentService {
     }
 
     public List<Appointment> getCurrentWeekAppointmentsByUser(User user) {
-//        TODO учесть перенос недели, если пользователь хочет записаться в воскресенье
         LocalDate now = LocalDate.now();
         Date start = Date.from(now.atStartOfDay()
                 .toInstant(ZoneOffset.UTC));
