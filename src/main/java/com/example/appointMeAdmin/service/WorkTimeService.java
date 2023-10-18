@@ -24,4 +24,11 @@ public class WorkTimeService {
     public void setWorkTime(WorkTime workTime) {
         workTimeRepository.save(workTime);
     }
+    public void setWorkTime(Date startWorkTime) {
+        WorkTime workTime = new WorkTime();
+        workTime.setStartWorkTime(startWorkTime);
+        workTime.setEndWorkTime(DateUtils.addHours(startWorkTime, 1));
+        workTime.setFree(true);
+        workTimeRepository.save(workTime);
+    }
 }

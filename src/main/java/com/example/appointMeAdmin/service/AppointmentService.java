@@ -14,6 +14,7 @@ import java.time.LocalTime;
 import java.time.ZoneOffset;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 
@@ -58,5 +59,17 @@ public class AppointmentService {
         Date start = Date.from(LocalDate.now().atStartOfDay()
                 .toInstant(ZoneOffset.UTC));
         return appointmentRepository.findByAppointmentDateBetween(start, DateUtils.addDays(start, 1));
+    }
+
+    public List<Appointment> getCurrentWeekAppointments() {
+        LocalDate now = LocalDate.now();
+        Object tmp = DayOfWeek.values().length - now.getDayOfWeek().getValue();
+        Date start = Date.from(now.atStartOfDay()
+                .toInstant(ZoneOffset.UTC));
+        Date end = Date.from(LocalDate.ofInstant(DateUtils.addDays(start,
+                                7).toInstant(),
+                        Utils.DEFAULT_ZONE_ID).atTime(LocalTime.MAX)
+                .toInstant(ZoneOffset.UTC));
+        return appointmentRepository.findByAppointmentDateBetween(start, end);
     }
 }

@@ -1,11 +1,14 @@
 package com.example.appointMeAdmin.conig;
 
-import com.example.appointMeAdmin.command.Command;
-import com.example.appointMeAdmin.command.CommandProcessor;
+import com.example.appointMeAdmin.state.CallbackProcessor;
+import com.example.appointMeAdmin.state.MessageProcessor;
+import com.example.appointMeAdmin.state.State;
+import com.example.appointMeAdmin.state.StateProcessor;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import java.util.Map;
@@ -22,8 +25,23 @@ public class BotConfig {
     private String token;
 
     @Bean
-    public Map<Command, CommandProcessor> commandProcessors(List<CommandProcessor> processors) {
-        return processors.stream().collect(Collectors.toMap(CommandProcessor::getName, Function.identity()));
+    public Map<State, StateProcessor> stateProcessors(List<StateProcessor> processors) {
+        return processors.stream().collect(Collectors.toMap(StateProcessor::getState, Function.identity()));
+    }
+
+    @Bean
+    public Map<State, MessageProcessor> messageProcessors(List<MessageProcessor> processors) {
+        return processors.stream().collect(Collectors.toMap(MessageProcessor::getState, Function.identity()));
+    }
+
+    @Bean
+    public Map<State, CallbackProcessor> callbackProcessors(List<CallbackProcessor> processors) {
+        return processors.stream().collect(Collectors.toMap(CallbackProcessor::getState, Function.identity()));
+    }
+
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
     }
 
 }
