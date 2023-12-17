@@ -9,11 +9,10 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-@UtilityClass
 public class Utils {
-    public final ZoneId DEFAULT_ZONE_ID = ZoneId.of("UTC");
-    public final int DEFAULT_TIMEZONE_OFFSET = 7;
-    public final String NO_APPOINTMENTS_REPLY_MESSAGE_TEMPLATE = "Запаиси отсутствуют";
+    public static final ZoneId DEFAULT_ZONE_ID = ZoneId.of("UTC");
+    public static final int DEFAULT_TIMEZONE_OFFSET = 7;
+    public static final String NO_APPOINTMENTS_REPLY_MESSAGE_TEMPLATE = "Запаиси отсутствуют";
     public static final String FULL_DATE_PATTERN = "dd.MM.yyyy HH:mm";
     public static final String TIME_WITHOUT_DATE_PATTERN = "HH:mm";
 
@@ -23,7 +22,7 @@ public class Utils {
                 : update.getMessage().getFrom().getId();
     }
 
-    public long getChatId(Update update) {
+    public static long getChatId(Update update) {
         if (update.getEditedMessage() != null) {
             return update.getEditedMessage().getChatId();
         }
@@ -33,7 +32,7 @@ public class Utils {
                 : update.getMessage().getChatId();
     }
 
-    public String getUsernameFromUpdate(Update update) {
+    public static String getUsernameFromUpdate(Update update) {
         if (update.getEditedMessage() != null) {
             return update.getEditedMessage().getFrom().getUserName();
         }
@@ -43,11 +42,11 @@ public class Utils {
                 : update.getMessage().getFrom().getUserName();
     }
 
-    public String formatSingleAppointmentForReplyMessage(Appointment appointment) {
+    public static String formatSingleAppointmentForReplyMessage(Appointment appointment) {
         return formatAppointmentsForReplyMessage(List.of(appointment));
     }
 
-    public String formatAppointmentsForReplyMessage(List<Appointment> appointments) {
+    public static String formatAppointmentsForReplyMessage(List<Appointment> appointments) {
         StringBuilder appointmentsForReplyMessage = new StringBuilder();
         appointments.stream()
                 .map(appointment -> ZonedDateTime.ofInstant(appointment.getAppointmentDate().toInstant(), DEFAULT_ZONE_ID)
