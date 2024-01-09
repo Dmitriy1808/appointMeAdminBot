@@ -27,8 +27,8 @@ import static com.example.appointMeAdmin.Utils.DEFAULT_ZONE_ID;
 @Component
 @Slf4j
 public class DeclineAppointmentStateProcessor implements CallbackProcessor {
-    private static final String DECLINE_APPOINTMENT_MESSAGE_TEMPLATE = "DECLINE_APPOINTMENT_MESSAGE_TEMPLATE";
-    private static final String DECLINE_APPOINTMENT_SUCCESSFUL_MESSAGE = "DECLINE_APPOINTMENT_SUCCESSFUL_MESSAGE";
+    private static final String DECLINE_APPOINTMENT_MESSAGE_TEMPLATE = "Выберите запись, которую хотите отменить:\n";
+    private static final String DECLINE_APPOINTMENT_SUCCESSFUL_MESSAGE = "Выбрнная запись успешно отменена";
 
     private final AppointmentService appointmentService;
 

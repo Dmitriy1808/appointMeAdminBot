@@ -20,9 +20,11 @@ import java.util.Date;
 @Component
 @Slf4j
 public class AddWorkTimeStateProcessor implements MessageProcessor {
-    private static final String ADD_WORK_TIME_MESSAGE_TEMPLATE = "ADD_WORK_TIME_MESSAGE_TEMPLATE";
-    private static final String ADD_WORK_TIME_ERROR_MESSAGE = "ADD_WORK_TIME_ERROR_MESSAGE";
-    private static final String ADD_WORK_TIME_SUCCESSFUL_MESSAGE = "ADD_WORK_TIME_SUCCESSFUL_MESSAGE";
+    private static final String ADD_WORK_TIME_MESSAGE_TEMPLATE = "Для добавления рабочего времени введите дату и время, как в примере - '14.06.2016 12:00'. " +
+            "К введенному времени автоматически будет добавлен один час.";
+    private static final String ADD_WORK_TIME_ERROR_MESSAGE = "Во время добавления рабочего времени что-то пошло не так. " +
+            "Проверьте формат записи времени, либо повторите попытку позже.";
+    private static final String ADD_WORK_TIME_SUCCESSFUL_MESSAGE = "Рабочее время успешно добавлено";
 
     private final WorkTimeService workTimeService;
 
