@@ -42,20 +42,17 @@ public class AddWorkTimeStateProcessor implements MessageProcessor {
     @Override
     public BotApiMethod<?> processMessage(Message message) {
         Long chatId = message.getChatId();
+        SendMessage.SendMessageBuilder messageBuilder = SendMessage.builder().chatId(chatId);
         if (!message.hasText()) {
             log.error("Empty work time in message");
-            return SendMessage.builder()
-                    .chatId(chatId)
-                    .text(ADD_WORK_TIME_ERROR_MESSAGE)
+            return messageBuilder.text(ADD_WORK_TIME_ERROR_MESSAGE)
                     .build();
         }
 
         Date preparedDate = getPreparedDate(message.getText());
         log.info("Save work time {} - {}", preparedDate, DateUtils.addHours(preparedDate, 1));
         workTimeService.setWorkTime(preparedDate);
-        return SendMessage.builder()
-                .chatId(chatId)
-                .text(ADD_WORK_TIME_SUCCESSFUL_MESSAGE)
+        return messageBuilder.text(ADD_WORK_TIME_SUCCESSFUL_MESSAGE)
                 .build();
     }
 

@@ -1,4 +1,4 @@
-package com.example.appointMeAdmin.conig;
+package com.example.appointMeAdmin.config;
 
 import com.example.appointMeAdmin.state.CallbackProcessor;
 import com.example.appointMeAdmin.state.MessageProcessor;

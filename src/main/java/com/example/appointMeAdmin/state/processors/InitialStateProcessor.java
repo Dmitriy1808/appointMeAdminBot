@@ -11,7 +11,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 @Component
 public class InitialStateProcessor implements StateProcessor {
 
-    private static final String INITIAL_STATE_MESSAGE = "INITIAL_STATE_MESSAGE\n*Жирный текст*";
+    private static final String INITIAL_STATE_MESSAGE = "INITIAL_STATE_MESSAGE";
 
     @Override
     public BotApiMethod<?> process(Update update) {

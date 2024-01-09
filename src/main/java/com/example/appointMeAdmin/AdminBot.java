@@ -1,6 +1,6 @@
 package com.example.appointMeAdmin;
 
-import com.example.appointMeAdmin.conig.BotConfig;
+import com.example.appointMeAdmin.config.BotConfig;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramWebhookBot;
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
